@@ -5,7 +5,7 @@ function Dashboard() {
 
     const [posts, setPosts] = useState([]);
     useEffect(() => {
-      fetch('http://localhost:5000')
+      fetch('http://localhost:5000/api/')
       .then(response => response.json())
       .then(json => setPosts(json.posts))
       .catch(err => {
