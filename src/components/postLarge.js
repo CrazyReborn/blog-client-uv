@@ -5,15 +5,19 @@ import CommentForm from './commentForm';
 
 function PostLarge() {
     const [post, setPost] = useState();
+    const [comments, setComments] = useState([]);
     const { id } = useParams();
 
     useEffect(() => {
         fetch(`http://localhost:5000/api/posts/${id}`)
         .then(response => response.json())
         .then(json => json.post)
-        .then(post => setPost(post))
+        .then(post => {
+            setPost(post);
+            setComments(post.comments);
+        })
         .catch(err => console.log('There was an error while fetching post: ', err))
-    }, [id]);
+    }, [id, comments]);
 
     return (
         <div>
@@ -29,8 +33,8 @@ function PostLarge() {
                     <div>{post.text}</div>
                 </div>
                 <CommentForm />
-                {post.comments.length !== 0 ?
-                 post.comments.map(comment => {
+                {comments.length !== 0 ?
+                 comments.map(comment => {
                      return (
                         <Comment key={comment._id} comment={comment} />
                      )
