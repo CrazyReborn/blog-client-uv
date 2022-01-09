@@ -2,6 +2,8 @@ import { useState, useEffect } from "react";
 import { useParams } from 'react-router-dom';
 import Comment from "./comment";
 import CommentForm from './commentForm';
+import { format } from 'date-fns';
+import parseISO from 'date-fns/parseISO'
 
 function PostLarge() {
     const [post, setPost] = useState();
@@ -29,7 +31,7 @@ function PostLarge() {
                 <div className='postLarge'>
                     <h1>{post.title}</h1>
                     <h2>By {post.author.username}</h2>
-                    <h3>{post.date}</h3>
+                    <h3>{format(parseISO(post.date), 'do MMMM u, H:m')}</h3>
                     <div>{post.text}</div>
                 </div>
                 <CommentForm />
