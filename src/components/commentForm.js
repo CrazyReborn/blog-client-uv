@@ -1,5 +1,6 @@
 import { useParams } from 'react-router-dom'
 import { useState } from 'react';
+import './styles/commentform.css';
 
 function CommentForm () {
     const { id } = useParams();
@@ -22,12 +23,13 @@ function CommentForm () {
 
 return (
     <>
-    <form onSubmit={FetchPostComment}>
-        <label htmlFor='author'>Author
+    <form className='commentForm' onSubmit={FetchPostComment}>
+        <h3>Leave a comment:</h3>
+        <label htmlFor='author'>Author:<br/>
         <input type='text' name='author' require='true' value={author} onChange={(e) => {setAuthor(e.target.value)}} />
         </label>
-        <label htmlFor='text'>
-        <textarea name='text' placeholder='Add your comment' require='true' value={text} onChange={(e) => {setText(e.target.value)}}/>
+        <label htmlFor='text'>Text: <br/>
+        <textarea name='text' placeholder='Add your comment' require='true' cols='50' value={text} onChange={(e) => {setText(e.target.value)}}/>
         </label>
         <button type='submit'>Submit</button>
     </form>

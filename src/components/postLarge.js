@@ -4,6 +4,7 @@ import Comment from "./comment";
 import CommentForm from './commentForm';
 import { format } from 'date-fns';
 import parseISO from 'date-fns/parseISO'
+import './styles/postlarge.css';
 
 function PostLarge() {
     const [post, setPost] = useState();
@@ -32,9 +33,16 @@ function PostLarge() {
                     <h1>{post.title}</h1>
                     <h2>By {post.author.username}</h2>
                     <h3>{format(parseISO(post.date), 'do MMMM u, H:m')}</h3>
-                    <div>{post.text}</div>
+                    <article>
+                        {post.text.split('<break>').map(paragraph => {
+                            return (
+                                <p>{paragraph}</p>
+                            )
+                        })}
+                    </article>
                 </div>
                 <CommentForm />
+                <h3>Comments:</h3>
                 {comments.length !== 0 ?
                  comments.sort((a,b) => {return new Date(b.date) - new Date(a.date)}).map(comment => {
                      return (

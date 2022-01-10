@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import PostMini from "./postmini";
+import './styles/dashboard.css';
 
 function Dashboard() {
 
