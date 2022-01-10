@@ -36,7 +36,7 @@ function PostLarge() {
                 </div>
                 <CommentForm />
                 {comments.length !== 0 ?
-                 comments.map(comment => {
+                 comments.sort((a,b) => {return new Date(b.date) - new Date(a.date)}).map(comment => {
                      return (
                         <Comment key={comment._id} comment={comment} />
                      )
